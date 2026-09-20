@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dream Cup XI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section id="start-screen" class="screen start-screen active" aria-labelledby="game-title">
+      <div class="start-backdrop" aria-hidden="true"></div>
+      <div class="start-content">
+        <p class="eyebrow">Copa 2026 Fantasy Match</p>
+        <h1 id="game-title">Dream Cup XI</h1>
+        <p class="subtitle">Monte seu time dos sonhos e domine a Copa</p>
+        <p class="intro">
+          Escolha 11 estrelas por posição, enfrente uma seleção montada pelo computador
+          e decida tudo em uma partida jogável vista de cima.
+        </p>
+        <button id="start-button" class="primary-button">Começar</button>
+      </div>
+    </section>
+
+    <section id="selection-screen" class="screen selection-screen" aria-labelledby="selection-title">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Mercado de craques</p>
+          <h2 id="selection-title">Monte seu XI perfeito</h2>
+        </div>
+        <div class="selection-actions">
+          <div id="team-switcher" class="team-switcher" aria-label="Selecionar time para montar">
+            <button id="select-p1-button" class="switch-button active" type="button">Player 1</button>
+            <button id="select-p2-button" class="switch-button" type="button">Player 2</button>
+          </div>
+          <button id="selection-setup-button" class="ghost-button">Alterar modo</button>
+          <button id="clear-team-button" class="ghost-button">Limpar escalação</button>
+        </div>
+      </header>
+
+      <aside class="squad-panel" aria-label="Resumo do time">
+        <div class="squad-header">
+          <div>
+            <span id="squad-team-label" class="panel-label">Dream Cup XI</span>
+            <strong id="selected-count">0/11</strong>
+          </div>
+          <button id="play-button" class="primary-button" disabled>Ver escalações</button>
+        </div>
+        <div id="squad-summary" class="squad-summary"></div>
+      </aside>
+
+      <div id="player-groups" class="player-groups"></div>
+    </section>
+
+    <section id="setup-screen" class="screen setup-screen" aria-labelledby="setup-title">
+      <div class="setup-panel">
+        <header class="setup-header">
+          <div>
+            <p class="eyebrow">Pré-jogo</p>
+            <h2 id="setup-title">Escolha como vai jogar</h2>
+          </div>
+          <button id="setup-back-button" class="ghost-button">Voltar ao início</button>
+        </header>
+
+        <div class="setup-grid">
+          <fieldset class="setup-card">
+            <legend>Modo de jogo</legend>
+            <label class="option-row">
+              <input type="radio" name="game-mode" value="full" checked>
+              <span>Partida completa</span>
+            </label>
+            <label class="option-row">
+              <input type="radio" name="game-mode" value="penalties">
+              <span>Só pênaltis</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="setup-card">
+            <legend>Jogadores</legend>
+            <label class="option-row">
+              <input type="radio" name="player-mode" value="single" checked>
+              <span>1 jogador contra IA</span>
+            </label>
+            <label class="option-row">
+              <input type="radio" name="player-mode" value="multi">
+              <span>Multiplayer local</span>
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="controls-panel">
+          <div class="control-column">
+            <h3>Player 1</h3>
+            <p>Move: WASD</p>
+            <p>Troca jogador: Q / E</p>
+            <p>Chuta, passa ou rouba: Espaço</p>
+          </div>
+          <div class="control-column">
+            <h3>Player 2</h3>
+            <p>Move: setas</p>
+            <p>Troca jogador: U / O</p>
+            <p>Chuta, passa ou rouba: Enter</p>
+          </div>
+          <div class="control-column">
+            <h3>Pênaltis</h3>
+            <p>Use WASD ou setas para mirar</p>
+            <p>Quando defender, mova o goleiro</p>
+            <p>O botão de chute cobra a penalidade</p>
+          </div>
+        </div>
+
+        <button id="setup-start-button" class="primary-button">Escolher jogadores</button>
+      </div>
+    </section>
+
+    <section id="lineup-screen" class="screen lineup-screen" aria-labelledby="lineup-title">
+      <div class="lineup-panel">
+        <header class="lineup-header">
+          <div>
+            <p class="eyebrow">Escalações</p>
+            <h2 id="lineup-title">Times em campo</h2>
+          </div>
+          <div class="lineup-actions">
+            <button id="lineup-back-button" class="ghost-button">Voltar</button>
+            <button id="lineup-start-button" class="primary-button">Entrar em campo</button>
+          </div>
+        </header>
+        <div class="lineup-legend">
+          <span><i class="legend-dot user-dot"></i>Dream Cup XI</span>
+          <span><i class="legend-dot cpu-dot"></i>Computer XI</span>
+        </div>
+        <div class="lineup-field">
+          <div id="lineup-user" class="lineup-team user-lineup"></div>
+          <div id="lineup-cpu" class="lineup-team cpu-lineup"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="match-screen" class="screen match-screen" aria-labelledby="match-title">
+      <header class="match-hud">
+        <div>
+          <p class="eyebrow">Partida</p>
+          <h2 id="match-title">Dream Cup XI x Computer XI</h2>
+        </div>
+        <div class="scoreboard" aria-live="polite">
+          <span class="team-chip user-chip" aria-label="Dream Cup XI"></span>
+          <span id="user-score">0</span>
+          <strong>x</strong>
+          <span id="cpu-score">0</span>
+          <span class="team-chip cpu-chip" aria-label="Computer XI"></span>
+        </div>
+        <div class="match-meta">
+          <span id="match-clock">02:00</span>
+          <span id="selected-player-label">Controle: -</span>
+        </div>
+      </header>
+
+      <div class="pitch-wrap">
+        <canvas id="game-canvas" width="960" height="560" aria-label="Campo de futebol Dream Cup XI"></canvas>
+      </div>
+
+      <div class="bench-bar">
+        <button id="back-selection-button" class="ghost-button">Voltar à seleção</button>
+        <div class="control-chips" aria-hidden="true">
+          <span>WASD</span>
+          <span>Q/E</span>
+          <span>Espaço</span>
+          <span>P2: setas</span>
+          <span>U/O</span>
+          <span>Enter</span>
+        </div>
+      </div>
+
+      <div id="interval-overlay" class="interval-overlay" aria-hidden="true">
+        <div class="interval-panel" role="dialog" aria-labelledby="interval-title" aria-modal="true">
+          <div class="interval-heading">
+            <div>
+              <p class="eyebrow">Intervalo</p>
+              <h3 id="interval-title">Ajuste seu time para o segundo tempo</h3>
+            </div>
+            <div id="interval-score" class="interval-score">0 x 0</div>
+          </div>
+          <div id="substitution-list" class="substitution-list"></div>
+          <div class="interval-actions">
+            <button id="continue-half-button" class="primary-button">Começar segundo tempo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen result-screen" aria-labelledby="result-title">
+      <div class="result-card">
+        <p class="eyebrow">Fim de jogo</p>
+        <h2 id="result-title">Placar final</h2>
+        <div id="final-score" class="final-score">0 x 0</div>
+        <p id="result-message" class="result-message"></p>
+        <div class="result-actions">
+          <button id="rematch-button" class="primary-button">Jogar novamente</button>
+          <button id="return-selection-button" class="ghost-button">Voltar à seleção</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
